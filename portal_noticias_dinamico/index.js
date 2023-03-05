@@ -110,12 +110,29 @@ app.get('/:slug',(req,res)=>{
     })
 })
 
+var usuarios = [{
+    login: 'Daniel',
+    senha: '123'
+}]
+
+app.post('/admin/login',(req,res)=>{
+    usuarios.map(function(val){
+        if(val.login == req.body.login && val.senha == req.body.senha){
+            req.session.login = 'Daniel';
+            
+        }
+        
+    })
+
+    res.redirect('/admin/login');
+})
+
 app.get('/admin/login',(req,res)=>{
     if(req.session.login == null){
-        req.session.login = "Daniel";
-        res.send('Sua sessão foi criada');
+        res.render('admin-login');
+        
     }else{
-        res.send(req.session.login);
+        res.render('admin-panel');
     }
     
 })
