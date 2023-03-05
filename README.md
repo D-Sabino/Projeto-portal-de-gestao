@@ -13,6 +13,7 @@
 npm install
 npm install -g nodemon
 npm install mongoose
+npm install express-session
 ```
 
 <p align="justify">
@@ -28,17 +29,5 @@ Isso permite que scripts locais sejam executados no computador, o que é necess�
 </p>
 
 
-## Módulos:
-- [x] Introdução <br>
-- [x] Configurando ambiente <br>
-- [x] Primeiros passos com NodeJS <br>
-- [x] Manipulando arquivos com NodeJS <br>
-- [x] Nodemon para produtividade <br>
-- [x] Entendendo o que são módulos <br>
-- [x] Seu primeiro projeto com NodeJS <br>
-- [x] Projeto site noticias estatico <br>
-- [x] Projeto site noticias dinamico <br>
-- [x] Criando sistema de chat (sockets) <br>
-- [x] Deploy NodeJS <br>
-- [ ] Projeto portal de gestão <br>
-- [ ] Webscraping com Puppeteer e criação de bots (BONUS)
+## Módulo:
+- Projeto portal de gestão
