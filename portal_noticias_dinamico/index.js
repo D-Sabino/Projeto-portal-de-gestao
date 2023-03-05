@@ -7,6 +7,8 @@ const app = express();
 
 const Posts = require('./Posts.js');
 
+var session = require('express-session');
+
 mongoose.connect('mongodb+srv://root:HthZ6jKqn5x1SmSC@cluster0.sotslrg.mongodb.net/dankicode?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true}).then(function(){
     console.log('Conectado com sucesso');
 }).catch(function(err){
@@ -17,6 +19,8 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
+
+app.use(session({secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -106,7 +110,15 @@ app.get('/:slug',(req,res)=>{
     })
 })
 
-
+app.get('/admin/login',(req,res)=>{
+    if(req.session.login == null){
+        req.session.login = "Daniel";
+        res.send('Sua sessão foi criada');
+    }else{
+        res.send(req.session.login);
+    }
+    
+})
 
 app.listen(5000,()=>{
     console.log('server rodando!');
