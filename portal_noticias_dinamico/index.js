@@ -115,6 +115,14 @@ var usuarios = [{
     senha: '123'
 }]
 
+app.post('/admin/cadastro',(req,res)=>{
+    res.send("Cadastrado com sucesso!");
+})
+
+app.get('/admin/deletar/:id', (req,res)=>{
+    res.send("Deletado a noticia com id:" + req.params.id);
+})
+
 app.post('/admin/login',(req,res)=>{
     usuarios.map(function(val){
         if(val.login == req.body.login && val.senha == req.body.senha){
