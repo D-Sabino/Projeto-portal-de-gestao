@@ -5,8 +5,60 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel do admin</title>
+
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header-painel{
+            width: 100%;
+            padding: 10px;
+            background-color: #00A1FF;
+            color: white;
+        }
+
+        form{
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        form input{
+            margin-bottom: 20px;
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+        }
+
+        form textarea{
+            width: 100%;
+            height: 120px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        form input[type=submit]{
+            width: 100%;
+            height: 40px;
+            background-color: #00A1FF;
+            border: 0;
+            cursor: pointer;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>LOGADO!</h1>
+    <div class="header-painel">
+        <h2>Cadastro noticia</h2>
+    </div>
+    <form>
+        <input type="text" name="titulo_noticia" placeholder="Titulo da noticia"/>
+        <input type="text" name="url_imagem" placeholder="Link da imagem da noticia"/>
+        <textarea name="noticia" placeholder="Noticia..."></textarea>
+        <input type="submit" name="acao" value="Cadastrar!" />
+    </form>
 </body>
 </html>
