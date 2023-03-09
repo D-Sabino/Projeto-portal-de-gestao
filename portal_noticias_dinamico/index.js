@@ -1,13 +1,15 @@
 const express = require('express');
-const mongoose = require('mongoose')
-var bodyParser = require('body-parser')
+const mongoose = require('mongoose');
+const fileUpload = require('express-fileupload');
+var session = require('express-session');
+var bodyParser = require('body-parser');
 
 const path = require('path');
 const app = express();
 
 const Posts = require('./Posts.js');
 
-var session = require('express-session');
+
 
 mongoose.connect('mongodb+srv://root:HthZ6jKqn5x1SmSC@cluster0.sotslrg.mongodb.net/dankicode?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true}).then(function(){
     console.log('Conectado com sucesso');
@@ -19,6 +21,11 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
+
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname, 'temp')
+}));
 
 app.use(session({secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
@@ -116,6 +123,7 @@ var usuarios = [{
 }]
 
 app.post('/admin/cadastro',(req,res)=>{
+    
     Posts.create({
         titulo: req.body.titulo_noticia,
         imagem: req.body.url_imagem,
