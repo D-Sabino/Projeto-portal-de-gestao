@@ -116,6 +116,15 @@ var usuarios = [{
 }]
 
 app.post('/admin/cadastro',(req,res)=>{
+    Posts.create({
+        titulo: req.body.titulo_noticia,
+        imagem: req.body.url_imagem,
+        categoria: 'Nenhuma',
+        conteudo: req.body.noticia,
+        slug: req.body.slug,
+        autor: "Admin",
+        views: 0
+    });
     res.send("Cadastrado com sucesso!");
 })
 
