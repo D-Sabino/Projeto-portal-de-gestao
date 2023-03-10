@@ -124,6 +124,20 @@ var usuarios = [{
 
 app.post('/admin/cadastro',(req,res)=>{
     
+
+    let formato = req.files.arquivo.name.split('.');
+    var imagem = "";
+
+    if(formato[formato.length - 1] == "jpg"){
+        imagem = new Date().getTime()+'.jpg';
+        req.files.arquivo.mv(__dirname+'/public/images/'+imagem);
+
+    }else{
+        fs.unlinkSync(req.files.arquivo.tempFilePath);
+
+    }
+
+
     Posts.create({
         titulo: req.body.titulo_noticia,
         imagem: req.body.url_imagem,
@@ -134,6 +148,7 @@ app.post('/admin/cadastro',(req,res)=>{
         views: 0
     });
     res.send("Cadastrado com sucesso!");
+    res.redirect('/admin/login')
 })
 
 app.get('/admin/deletar/:id', (req,res)=>{
